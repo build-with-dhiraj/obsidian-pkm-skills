@@ -11,9 +11,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 - Initial public release.
 - Three modes:
-  - `resolve` — deterministic alias-table resolution of plain-string `entities:` / `topics:` to canonical `[[wikilinks]]` (no network, $0).
-  - `anchor` — local-embedding (fastembed, `BAAI/bge-small-en-v1.5` @ `max_length=256`) fallback for true-orphan leaves; concepts-only target set by default; cosine floor 0.74; per-hub absorption cap 50.
-  - `mint` (experimental) — cluster orphans + LLM-name + mint new `concepts/` hubs for coherent clusters >= 5 members; gated behind `--experimental`.
+  - `resolve`: deterministic alias-table resolution of plain-string `entities:` / `topics:` to canonical `[[wikilinks]]` (no network, $0).
+  - `anchor`: local-embedding (fastembed, `BAAI/bge-small-en-v1.5` @ `max_length=256`) fallback for true-orphan leaves; concepts-only target set by default; cosine floor 0.74; per-hub absorption cap 50.
+  - `mint` (experimental): cluster orphans + LLM-name + mint new `concepts/` hubs for coherent clusters >= 5 members; gated behind `--experimental`.
 - Safe-writes contract:
   - Frontmatter-only writes (body bytes never modified)
   - Atomic writes via tempfile + os.rename

@@ -67,7 +67,7 @@ obsidian-orphan-killer anchor --vault ~/Documents/MyVault --dry-run
 obsidian-orphan-killer anchor --vault ~/Documents/MyVault
 ```
 
-### Mint mode (EXPERIMENTAL — writes new notes)
+### Mint mode (EXPERIMENTAL, writes new notes)
 
 ```bash
 # Always dry-run. The mode writes new hub notes.
@@ -137,4 +137,4 @@ git clone https://github.com/build-with-dhiraj/obsidian-orphan-killer ~/.codex/s
 - Safety contract with recovery instructions: [`docs/SAFETY.md`](docs/SAFETY.md)
 - The formal guard spec: [`docs/RUBRIC.md`](docs/RUBRIC.md)
 - Feature comparison vs Find Unlinked Files / Various Complements / Janitor / Dangling Links / Smart Connections: [`docs/COMPARISON.md`](docs/COMPARISON.md)
-- Companion diagnostic tool: [obsidian-graph-auditor](https://github.com/build-with-dhiraj/obsidian-graph-auditor) — audit first, fix second.
+- Companion diagnostic tool: [obsidian-graph-auditor](https://github.com/build-with-dhiraj/obsidian-graph-auditor). Audit first, fix second.

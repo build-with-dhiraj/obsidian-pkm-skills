@@ -64,7 +64,7 @@ orphan-killer handles all three with safety guards strong enough to trust on a l
 
 ## The three modes
 
-### `resolve` — deterministic, $0
+### `resolve`: deterministic, $0
 
 Walks your vault's `entities:` and `topics:` frontmatter lists. For each plain string, looks it up in an alias table built from every hub note's filename, title, and `aliases:` frontmatter. Rewrites to `[[slug]]` only if the hub exists on disk. Never writes a dangling link.
 
@@ -73,7 +73,7 @@ obsidian-orphan-killer resolve --vault ~/Documents/MyVault --dry-run
 obsidian-orphan-killer resolve --vault ~/Documents/MyVault
 ```
 
-### `anchor` — local embedding, $0 after one-time model download
+### `anchor`: local embedding, $0 after one-time model download
 
 For each true orphan with enough body to embed, finds the single nearest existing hub by cosine similarity (using `BAAI/bge-small-en-v1.5` via fastembed). Attaches one `[[hub]]` to `entities:` IFF cosine >= floor. Below the floor, stays unlinked.
 
@@ -82,7 +82,7 @@ obsidian-orphan-killer anchor --vault ~/Documents/MyVault --dry-run
 obsidian-orphan-killer anchor --vault ~/Documents/MyVault
 ```
 
-### `mint` — EXPERIMENTAL, writes new notes
+### `mint`: EXPERIMENTAL, writes new notes
 
 For orphans that no existing hub can absorb, clusters them by cosine-similarity-graph community detection. For each cluster with >= `min_cluster` members, asks an LLM to name the shared topic and judge coherence. Coherent clusters get a new `concepts/` hub minted; members get anchored to it. Always dry-run first. Always read the audit TSV.
 
@@ -211,16 +211,16 @@ Full feature matrix and analysis in [`docs/COMPARISON.md`](docs/COMPARISON.md).
 ## FAQ
 
 ### Will this delete or rewrite my notes?
-No. The orphan-killer modifies frontmatter values ONLY. The body bytes — title, headings, paragraphs, code blocks — are never touched. Every test asserts the body-only content hash is unchanged after every run.
+No. The orphan-killer modifies frontmatter values ONLY. The body bytes (title, headings, paragraphs, code blocks) are never touched. Every test asserts the body-only content hash is unchanged after every run.
 
 ### What if a resolved hub doesn't exist?
 The plain string is left alone. The dangling-link guard means we never write `[[slug]]` unless `slug.md` exists in a hub directory. Unresolved surface forms are reported in the `top_residuals` list so you can decide whether to mint a hub for them later.
 
 ### Can I undo it?
-Every write is a single-line YAML mutation in the frontmatter. `git diff` shows it exactly; `git checkout -- <file>` reverts it. The idempotency stamps mean a re-run on unchanged notes is safe — you can't accidentally re-write something that's already correct.
+Every write is a single-line YAML mutation in the frontmatter. `git diff` shows it exactly; `git checkout -- <file>` reverts it. The idempotency stamps mean a re-run on unchanged notes is safe; you can't accidentally re-write something that's already correct.
 
 ### Does it work with Logseq / Roam / Quartz?
-Yes for `resolve` — the alias-table builder works on any markdown directory with frontmatter aliases. Pass `--hub-dirs your-dirs` if your convention is different from `entities,concepts`. Anchor and mint also work with the same flexibility.
+Yes for `resolve`: the alias-table builder works on any markdown directory with frontmatter aliases. Pass `--hub-dirs your-dirs` if your convention is different from `entities,concepts`. Anchor and mint also work with the same flexibility.
 
 ### Why is mint mode "experimental"?
 Because it writes NEW notes (new concept hubs). The other modes only modify existing frontmatter. Mint is gated behind `--experimental` so it can never be enabled by accident. Three deterministic guards fire BEFORE any new hub is written: the topic denylist, the URL-fragment check, and the generic-catch-all backstop. Plus the LLM coherence judge. Plus a duplicate-hub check. Plus a spread-too-wide reject. Mint mode is not "throw an LLM at it"; it is a fenced sequence of cheap deterministic checks with a single LLM call in the middle.

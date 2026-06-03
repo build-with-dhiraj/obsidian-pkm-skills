@@ -4,9 +4,9 @@
 
 ## What it does
 
-- **resolve** — plain-string `entities:` / `topics:` frontmatter values rewritten to canonical `[[wikilinks]]` via an alias table built from each hub note's filename + title + aliases.
-- **anchor** — true-orphan leaves (no outbound, no inbound) get attached to their single nearest existing hub by cosine similarity (local fastembed, BAAI/bge-small-en-v1.5 @ max_length=256). Below the floor (default 0.74), orphans stay unlinked.
-- **mint** (experimental) — orphans with no fitting existing hub are clustered (cosine-similarity-graph greedy-modularity community detection). Clusters with >= 5 members are LLM-named + coherence-judged; coherent + name-guard-clean clusters mint a new concepts/ hub.
+- **resolve**: plain-string `entities:` / `topics:` frontmatter values rewritten to canonical `[[wikilinks]]` via an alias table built from each hub note's filename + title + aliases.
+- **anchor**: true-orphan leaves (no outbound, no inbound) get attached to their single nearest existing hub by cosine similarity (local fastembed, BAAI/bge-small-en-v1.5 @ max_length=256). Below the floor (default 0.74), orphans stay unlinked.
+- **mint** (experimental): orphans with no fitting existing hub are clustered (cosine-similarity-graph greedy-modularity community detection). Clusters with >= 5 members are LLM-named + coherence-judged; coherent + name-guard-clean clusters mint a new concepts/ hub.
 
 ## Safety guarantees
 

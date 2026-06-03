@@ -1,4 +1,4 @@
-# Guard Rubric — the formal safety spec
+# Guard Rubric: the formal safety spec
 
 `docs/SAFETY.md` is for users. This page is for contributors. Every guard ships with: a plain-language statement, the enforcement mechanism in code, the test that locks it in, and the verification recipe.
 
@@ -204,4 +204,4 @@ The bar to add a guard is low. The bar to remove one is "explicit user discussio
 
 ## References
 
-The contract above is derived from a year of orphan-fixing work on a real 3,000-note vault. The specific failure modes the guards prevent — force-star formation, brand-leak, dangling-link rot, body-hash invalidation triggering a 7.5GB re-embed — are not theoretical. They have all happened on real PKM systems.
+The contract above is derived from a year of orphan-fixing work on a real 3,000-note vault. The specific failure modes the guards prevent (force-star formation, brand-leak, dangling-link rot, body-hash invalidation triggering a 7.5GB re-embed) are not theoretical. They have all happened on real PKM systems.

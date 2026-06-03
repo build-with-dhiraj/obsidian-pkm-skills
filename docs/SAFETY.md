@@ -10,7 +10,7 @@ This is a tool that writes to your notes. Trust has to be earned, not asserted. 
 
 ### 1. Frontmatter-only writes
 
-The orphan-killer mutates YAML frontmatter values ONLY. The body bytes — title, headings, paragraphs, code blocks, images, attachments — are never modified.
+The orphan-killer mutates YAML frontmatter values ONLY. The body bytes (title, headings, paragraphs, code blocks, images, attachments) are never modified.
 
 **Enforced by:** `obsidian_orphan_killer/fm.py::body_only_hash()` is computed before and after every run; if it changes, the tests fail.
 
@@ -54,7 +54,7 @@ The hash is over the body + the entity/topic fields. On a re-run, if the hash ma
 
 A plain string is rewritten to `[[slug]]` ONLY IF `slug.md` exists in a hub directory. If the alias table claims a hub but the file is gone, the rewrite is skipped and the plain string stays.
 
-**Why this matters:** the alternative — writing `[[some-deleted-hub]]` — would create a phantom link in Obsidian's graph view that looks like a hub but doesn't resolve. The orphan-killer refuses to do that.
+**Why this matters:** the alternative (writing `[[some-deleted-hub]]`) would create a phantom link in Obsidian's graph view that looks like a hub but doesn't resolve. The orphan-killer refuses to do that.
 
 **Tests that lock this in:**
 - `tests/test_resolve.py::test_resolve_never_writes_dangling_links`
@@ -98,7 +98,7 @@ Pass `--include-entities` to opt in. Most users should not.
 
 Cosine similarity is high between things that are obviously distinct in the real world: `Claude AI` and `Claude Code` are not the same thing, but their embeddings are close. The same is true of `JoVE` vs `JoVE Labs`, `Gemini AI` vs `Gemini Pro`, and many others.
 
-The lexical guard catches some of this. The user can also supply explicit DO_NOT_MERGE pairs — frozensets of normalized keys that must never collapse onto each other. The embedding leg checks every candidate against this list before any rewrite.
+The lexical guard catches some of this. The user can also supply explicit DO_NOT_MERGE pairs (frozensets of normalized keys that must never collapse onto each other). The embedding leg checks every candidate against this list before any rewrite.
 
 **Tests that lock this in:**
 - `tests/test_guards.py::test_do_not_merge_user_pairs`
@@ -173,7 +173,7 @@ The full audit trail is in your repository.
 - It does not call out to any network service in `anchor` mode (after the one-time fastembed model download).
 - It does not modify the body bytes of any note, ever.
 - It does not write a wikilink to a hub that doesn't exist on disk.
-- It does not force a noisy match — below the cosine floor, the orphan stays unlinked.
+- It does not force a noisy match. Below the cosine floor, the orphan stays unlinked.
 - It does not anchor to entity (brand) hubs by default. The concepts-only default avoids the brand-leak failure mode.
 - It does not collapse `DO_NOT_MERGE` pairs even when their cosine is high.
 - It does not write new notes outside of `mint` mode, which is gated behind `--experimental`.
