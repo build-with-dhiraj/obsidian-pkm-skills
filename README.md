@@ -9,6 +9,10 @@
 [![Tests](https://img.shields.io/badge/tests-45%20passing-brightgreen)](tests/)
 [![Cross-CLI](https://img.shields.io/badge/works%20in-Claude%20Code%20%E2%80%A2%20Cursor%20%E2%80%A2%20Gemini%20%E2%80%A2%20Codex-purple)](SKILL.md)
 
+![Terminal card of obsidian-orphan-killer resolve --dry-run on the bundled demo vault: 4 alias-table hubs, 7 notes scanned, 9 resolved occurrences, 2 residual unresolved keys reported, zero writes because it is a safe dry run](docs/03-orphan-killer-resolve.png)
+
+> The screenshot is the `$0`, write-nothing `resolve --dry-run` against the bundled demo vault. Nothing is touched until you drop `--dry-run`. Read the [safety guards](#safety-guards-read-this-first) before your first live run.
+
 ---
 
 ## What does obsidian-orphan-killer do?
@@ -138,16 +142,24 @@ The two-tool flow:
 
 ## How to install
 
-### Python / PyPI
+Not published to PyPI yet. Install directly from GitHub.
+
+### From git
 
 ```bash
-pip install obsidian-orphan-killer
+# resolve mode only (deterministic, no embeddings, the safest entry point):
+pipx install "git+https://github.com/build-with-dhiraj/obsidian-orphan-killer.git"
+```
 
-# Optional extras for the anchor + mint modes (local embeddings):
-pip install 'obsidian-orphan-killer[embed]'
+To get the `anchor` and `mint` modes you need the optional extras, which is cleanest from a clone plus an editable install:
 
-# Mint mode also wants an LLM client (default uses OpenAI):
-pip install 'obsidian-orphan-killer[mint]'
+```bash
+git clone https://github.com/build-with-dhiraj/obsidian-orphan-killer
+cd obsidian-orphan-killer
+
+pip install -e .                # resolve mode only
+pip install -e ".[embed]"       # add anchor + mint (local embeddings)
+pip install -e ".[mint]"        # add the LLM client for mint mode (default OpenAI)
 ```
 
 The `resolve` mode has no embedding deps and is the safest entry point.
@@ -155,9 +167,9 @@ The `resolve` mode has no embedding deps and is the safest entry point.
 ### Claude Code
 
 ```bash
-pip install 'obsidian-orphan-killer[embed]'
 mkdir -p ~/.claude/skills
 git clone https://github.com/build-with-dhiraj/obsidian-orphan-killer ~/.claude/skills/obsidian-orphan-killer
+pip install -e ~/.claude/skills/obsidian-orphan-killer"[embed]"
 ```
 
 Then ask: *"fix my obsidian orphans at ~/Documents/MyVault"*. Claude Code reads `SKILL.md` and invokes the CLI.
@@ -165,25 +177,25 @@ Then ask: *"fix my obsidian orphans at ~/Documents/MyVault"*. Claude Code reads 
 ### Cursor
 
 ```bash
-pip install 'obsidian-orphan-killer[embed]'
 mkdir -p ~/.cursor/skills
 git clone https://github.com/build-with-dhiraj/obsidian-orphan-killer ~/.cursor/skills/obsidian-orphan-killer
+pip install -e ~/.cursor/skills/obsidian-orphan-killer"[embed]"
 ```
 
 ### Gemini CLI
 
 ```bash
-pip install 'obsidian-orphan-killer[embed]'
 mkdir -p ~/.gemini/skills
 git clone https://github.com/build-with-dhiraj/obsidian-orphan-killer ~/.gemini/skills/obsidian-orphan-killer
+pip install -e ~/.gemini/skills/obsidian-orphan-killer"[embed]"
 ```
 
 ### Codex CLI
 
 ```bash
-pip install 'obsidian-orphan-killer[embed]'
 mkdir -p ~/.codex/skills
 git clone https://github.com/build-with-dhiraj/obsidian-orphan-killer ~/.codex/skills/obsidian-orphan-killer
+pip install -e ~/.codex/skills/obsidian-orphan-killer"[embed]"
 ```
 
 ---
