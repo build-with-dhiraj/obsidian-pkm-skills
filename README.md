@@ -2,11 +2,29 @@
 
 > Test your Obsidian RAG. Measure your second brain. Score any retrieval backend on Recall@10 against a gold-set generated from your own vault. Read-only Python CLI. Default target 0.85. Works in Claude Code, Cursor, Gemini CLI, and Codex.
 
-[![PyPI](https://img.shields.io/badge/pypi-v0.1.0-blue)](https://github.com/build-with-dhiraj/obsidian-brain-eval)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-22%20passing-brightgreen)](.github/workflows/test.yml)
 [![Cross-CLI](https://img.shields.io/badge/cross--cli-Claude%20%7C%20Cursor%20%7C%20Gemini%20%7C%20Codex-purple)](#cross-cli-install)
+
+![Recall@10 scorecard for obsidian-brain-eval: 8 questions, 8 hits, Recall@10 of 1.0000, status PASS against the 0.85 target, on the shipped demo vault with the BM25 backend](docs/04-brain-eval-recall.png)
+
+---
+
+## 30-second quickstart (no GPT, no API key)
+
+```bash
+git clone https://github.com/build-with-dhiraj/obsidian-brain-eval
+cd obsidian-brain-eval
+pip install -e ".[naive]"
+
+obsidian-brain-eval score \
+    --vault examples/demo-vault \
+    --gold examples/sample-gold-set.jsonl \
+    --backend naive
+```
+
+You should see a PASS with Recall@10 = 1.0 against the shipped 10-note demo vault, exactly as pictured above. Not yet on PyPI; install from git (see [How to install](#how-to-install)).
 
 ---
 
@@ -85,27 +103,37 @@ That output is the **real run** of `obsidian-brain-eval score --vault examples/d
 
 ## How to install
 
-### Python / PyPI (any environment)
+Not published to PyPI yet. Install directly from GitHub.
+
+### From git (any environment)
 
 ```bash
 # Minimum install with the naive BM25 backend (no embeddings, no API keys):
-pip install "obsidian-brain-eval[naive]"
-
-# To generate gold-sets via GPT (one-time, $1-2 per 40 questions):
-pip install "obsidian-brain-eval[naive,generate]"
-
-# To benchmark a LanceDB hybrid retrieval stack:
-pip install "obsidian-brain-eval[naive,lancedb]"
+pipx install "git+https://github.com/build-with-dhiraj/obsidian-brain-eval.git"
+# (pipx installs only the base package; for backend extras, clone and use the editable install below.)
 ```
+
+The cleanest way to pick backends and extras is a clone plus an editable install:
+
+```bash
+git clone https://github.com/build-with-dhiraj/obsidian-brain-eval
+cd obsidian-brain-eval
+
+pip install -e ".[naive]"             # BM25 backend, no embeddings, no API keys
+pip install -e ".[naive,generate]"    # add the GPT gold-set generator (one-time, $1-2 per 40 questions)
+pip install -e ".[naive,lancedb]"     # add the LanceDB hybrid FTS + vector backend
+```
+
+Either way the `obsidian-brain-eval` command lands on your PATH.
 
 ### Cross-CLI install
 
 #### Claude Code
 
 ```bash
-pip install "obsidian-brain-eval[naive]"
 mkdir -p ~/.claude/skills
 git clone https://github.com/build-with-dhiraj/obsidian-brain-eval ~/.claude/skills/obsidian-brain-eval
+pip install -e ~/.claude/skills/obsidian-brain-eval"[naive]"
 ```
 
 Then ask Claude Code: "test my obsidian rag at ~/Documents/MyVault" or "generate a 40-question gold-set for ~/Documents/MyVault and score it".
@@ -113,9 +141,9 @@ Then ask Claude Code: "test my obsidian rag at ~/Documents/MyVault" or "generate
 #### Cursor
 
 ```bash
-pip install "obsidian-brain-eval[naive]"
 mkdir -p ~/.cursor/skills
 git clone https://github.com/build-with-dhiraj/obsidian-brain-eval ~/.cursor/skills/obsidian-brain-eval
+pip install -e ~/.cursor/skills/obsidian-brain-eval"[naive]"
 ```
 
 Then ask Cursor: "measure my second brain's retrieval quality".
@@ -123,9 +151,9 @@ Then ask Cursor: "measure my second brain's retrieval quality".
 #### Gemini CLI
 
 ```bash
-pip install "obsidian-brain-eval[naive]"
 mkdir -p ~/.gemini/skills
 git clone https://github.com/build-with-dhiraj/obsidian-brain-eval ~/.gemini/skills/obsidian-brain-eval
+pip install -e ~/.gemini/skills/obsidian-brain-eval"[naive]"
 ```
 
 Then ask Gemini CLI: "evaluate my obsidian rag" or "is my pkm answering well".
@@ -133,9 +161,9 @@ Then ask Gemini CLI: "evaluate my obsidian rag" or "is my pkm answering well".
 #### Codex CLI
 
 ```bash
-pip install "obsidian-brain-eval[naive]"
 mkdir -p ~/.codex/skills
 git clone https://github.com/build-with-dhiraj/obsidian-brain-eval ~/.codex/skills/obsidian-brain-eval
+pip install -e ~/.codex/skills/obsidian-brain-eval"[naive]"
 ```
 
 Then ask Codex: "score my obsidian retrieval" or "recall at 10 my vault".
@@ -216,7 +244,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install "obsidian-brain-eval[naive]"
+      - run: pip install "obsidian-brain-eval[naive] @ git+https://github.com/build-with-dhiraj/obsidian-brain-eval.git"
       - run: |
           obsidian-brain-eval score \
             --vault vault/ \
