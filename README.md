@@ -9,6 +9,24 @@
 [![Tests](https://img.shields.io/badge/tests-21%20passing-brightgreen)](tests/)
 [![Cross-CLI](https://img.shields.io/badge/works%20in-Claude%20Code%20%E2%80%A2%20Cursor%20%E2%80%A2%20Gemini%20%E2%80%A2%20Codex-purple)](SKILL.md)
 
+![Before/after 8-dimension scorecard on the bundled demo vault: orphan rate, top-hub edge-share, frontmatter-wikilink adoption, and Louvain modularity climb from failing grades to passing, taking the overall grade from F to D with per-dimension deltas](docs/02-scorecard-before-after.png)
+
+---
+
+## 30-second quickstart
+
+Not on PyPI yet, so install from git and run it against the bundled demo vault:
+
+```bash
+git clone https://github.com/build-with-dhiraj/obsidian-graph-auditor
+cd obsidian-graph-auditor
+pip install -e .
+
+obsidian-graph-audit --vault examples/demo-vault
+```
+
+That prints a full letter-graded scorecard for the shipped demo vault in well under a second. Point `--vault` at your own vault when you are ready. The tool is read-only and never writes to your notes.
+
 ---
 
 ## What is the Obsidian Graph Auditor?
@@ -112,19 +130,23 @@ The single largest move came from breaking up one mega-hub: a "research" anchor 
 
 ## How to install
 
-### Python / PyPI (any environment)
+Not published to PyPI yet. Install directly from GitHub.
+
+### From git (any environment)
 
 ```bash
-pip install obsidian-graph-auditor
+pipx install "git+https://github.com/build-with-dhiraj/obsidian-graph-auditor.git"
 obsidian-graph-audit --vault ~/Documents/MyVault
 ```
+
+Prefer a clone you can hack on? `git clone` the repo and `pip install -e .` instead. Either way the `obsidian-graph-audit` command lands on your PATH.
 
 ### Claude Code
 
 ```bash
-pip install obsidian-graph-auditor
 mkdir -p ~/.claude/skills
 git clone https://github.com/build-with-dhiraj/obsidian-graph-auditor ~/.claude/skills/obsidian-graph-auditor
+pip install -e ~/.claude/skills/obsidian-graph-auditor
 ```
 
 Then ask: *"audit my obsidian vault at ~/Documents/MyVault"*. Claude Code reads `SKILL.md` and invokes the CLI.
@@ -132,25 +154,25 @@ Then ask: *"audit my obsidian vault at ~/Documents/MyVault"*. Claude Code reads 
 ### Cursor
 
 ```bash
-pip install obsidian-graph-auditor
 mkdir -p ~/.cursor/skills
 git clone https://github.com/build-with-dhiraj/obsidian-graph-auditor ~/.cursor/skills/obsidian-graph-auditor
+pip install -e ~/.cursor/skills/obsidian-graph-auditor
 ```
 
 ### Gemini CLI
 
 ```bash
-pip install obsidian-graph-auditor
 mkdir -p ~/.gemini/skills
 git clone https://github.com/build-with-dhiraj/obsidian-graph-auditor ~/.gemini/skills/obsidian-graph-auditor
+pip install -e ~/.gemini/skills/obsidian-graph-auditor
 ```
 
 ### Codex CLI
 
 ```bash
-pip install obsidian-graph-auditor
 mkdir -p ~/.codex/skills
 git clone https://github.com/build-with-dhiraj/obsidian-graph-auditor ~/.codex/skills/obsidian-graph-auditor
+pip install -e ~/.codex/skills/obsidian-graph-auditor
 ```
 
 ---
