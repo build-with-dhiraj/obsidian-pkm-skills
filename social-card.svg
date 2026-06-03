@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="obsidian-brain-eval — Stop guessing if your second brain works. Test it. Recall@10 gate against a vault-aware gold-set.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0e1f"/>
+      <stop offset="1" stop-color="#1a1a3d"/>
+    </linearGradient>
+    <linearGradient id="pass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#34d399"/>
+    </linearGradient>
+    <style>
+      .fg-1 { fill: #fffffe; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .fg-2 { fill: #94a1b2; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .accent { fill: #34d399; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .cyan { fill: #22d3ee; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .good { fill: #34d399; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .warn { fill: #f59e0b; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    </style>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- top label -->
+  <text x="80" y="100" class="fg-2" font-size="22" letter-spacing="6">OBSIDIAN-BRAIN-EVAL · MIT · v0.1.0</text>
+
+  <!-- headline -->
+  <text x="80" y="180" class="fg-1" font-size="58" font-weight="700">Stop guessing if your</text>
+  <text x="80" y="240" class="fg-1" font-size="58" font-weight="700">second brain works.</text>
+  <text x="80" y="300" class="accent" font-size="58" font-weight="700">Test it.</text>
+
+  <!-- divider -->
+  <rect x="80" y="335" width="120" height="3" fill="url(#pass)"/>
+
+  <!-- scorecard preview (mock from a real run) -->
+  <g font-size="22">
+    <text x="80" y="395" class="fg-2">questions             </text>
+    <text x="450" y="395" class="fg-1">40</text>
+
+    <text x="80" y="430" class="fg-2">hits                  </text>
+    <text x="450" y="430" class="fg-1">37</text>
+
+    <text x="80" y="465" class="fg-2">Recall@10             </text>
+    <text x="450" y="465" class="fg-1">0.9250</text>
+    <text x="580" y="465" class="good">&gt;= 0.85</text>
+
+    <text x="80" y="500" class="fg-2">status                </text>
+    <text x="450" y="500" class="good">PASS</text>
+  </g>
+
+  <!-- right column big verdict -->
+  <g>
+    <text x="900" y="370" class="accent" font-size="170" font-weight="800" text-anchor="middle">PASS</text>
+    <text x="900" y="415" class="fg-2" font-size="22" text-anchor="middle">RECALL@10 GATE</text>
+    <text x="900" y="445" class="fg-2" font-size="22" text-anchor="middle">VAULT-AWARE GOLD-SET</text>
+  </g>
+
+  <!-- bottom strap -->
+  <text x="80" y="570" class="fg-2" font-size="20">Read-only · Pluggable backends · BM25 + LanceDB · Claude Code, Cursor, Gemini CLI, Codex</text>
+  <text x="80" y="600" class="fg-1" font-size="20">github.com/build-with-dhiraj/obsidian-brain-eval</text>
+</svg>
