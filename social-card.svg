@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="obsidian-orphan-killer — Kill your Obsidian orphans at the source. Auto-link to canonical hubs.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f0e17"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ef4444"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+    <style>
+      .fg-1 { fill: #fffffe; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .fg-2 { fill: #94a1b2; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .accent { fill: #f97316; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .good { fill: #2cb67d; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .strike { fill: #94a1b2; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; text-decoration: line-through; }
+    </style>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- top label -->
+  <text x="80" y="100" class="fg-2" font-size="22" letter-spacing="6">OBSIDIAN-ORPHAN-KILLER · MIT · v0.1.0</text>
+
+  <!-- headline -->
+  <text x="80" y="180" class="fg-1" font-size="60" font-weight="700">Kill your Obsidian orphans</text>
+  <text x="80" y="250" class="accent" font-size="60" font-weight="700">at the source.</text>
+
+  <!-- divider -->
+  <rect x="80" y="290" width="120" height="3" fill="url(#accent)"/>
+
+  <!-- before/after -->
+  <g font-size="22">
+    <text x="80" y="345" class="fg-2">entities:</text>
+    <text x="290" y="345" class="strike">[python3, py]</text>
+
+    <text x="80" y="380" class="fg-2">topics:</text>
+    <text x="290" y="380" class="strike">[PKM, second brain]</text>
+
+    <text x="80" y="430" class="fg-2">--></text>
+    <text x="160" y="430" class="fg-1">obsidian-orphan-killer resolve</text>
+
+    <text x="80" y="485" class="fg-2">entities:</text>
+    <text x="290" y="485" class="good">[[[python]]]</text>
+
+    <text x="80" y="520" class="fg-2">topics:</text>
+    <text x="290" y="520" class="good">[[[knowledge-management]]]</text>
+  </g>
+
+  <!-- right column: modes box -->
+  <g>
+    <rect x="780" y="320" width="360" height="225" fill="none" stroke="#94a1b2" stroke-width="2" rx="8"/>
+    <text x="800" y="355" class="fg-2" font-size="18">THREE MODES</text>
+    <text x="800" y="395" class="fg-1" font-size="22">resolve</text>
+    <text x="900" y="395" class="fg-2" font-size="18">alias table, $0</text>
+    <text x="800" y="445" class="fg-1" font-size="22">anchor</text>
+    <text x="900" y="445" class="fg-2" font-size="18">local embedding, $0</text>
+    <text x="800" y="495" class="fg-1" font-size="22">mint</text>
+    <text x="900" y="495" class="fg-2" font-size="18">experimental</text>
+    <text x="800" y="525" class="accent" font-size="14">frontmatter-only · atomic · idempotent</text>
+  </g>
+
+  <!-- bottom strap -->
+  <text x="80" y="585" class="fg-2" font-size="20">Pure Python · 8 safety guards · Works in Claude Code, Cursor, Gemini CLI, Codex</text>
+  <text x="80" y="610" class="fg-1" font-size="18">github.com/build-with-dhiraj/obsidian-orphan-killer</text>
+</svg>
