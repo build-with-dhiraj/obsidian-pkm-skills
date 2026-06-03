@@ -31,13 +31,13 @@ Trigger this skill whenever the user wants to:
 | 1 | Link density (edges/note) | 4-10 | network-science consensus, kepano "Properties as links" |
 | 2 | Orphan rate (deg 0) | < 10% | Konik PKM-as-graph |
 | 3 | Near-orphan rate (deg 1) | < 15% | derived complement of orphan threshold |
-| 4 | Connected ≥2 share | > 75% | derived — most notes should be actually integrated |
+| 4 | Connected ≥2 share | > 75% | derived, most notes should be actually integrated |
 | 5 | Top-hub edge-share | < 5% | power-law avoidance, Milo motifs |
 | 6 | Top-hub : next-hub ratio | < 2.0 | healthy power-law tail |
 | 7 | Louvain modularity | 0.4-0.65 | Newman / Paranyushkin (InfraNodus) |
 | 8 | Frontmatter-wikilink adoption | > 80% | kepano typed-metadata convention |
 
-A vault is **Grade A** only if every dimension grades A. The worst dimension is the overall grade — by design, so you always see the highest-leverage fix.
+A vault is **Grade A** only if every dimension grades A. The worst dimension is the overall grade, by design, so you always see the highest-leverage fix.
 
 ## How to run
 
@@ -59,19 +59,19 @@ obsidian-graph-audit --vault ~/Documents/MyVault --threshold-config my-rubric.ya
 
 Default exit codes:
 
-- `0` — audit ran cleanly (and matched/exceeded baseline, if supplied)
-- `1` — at least one dimension regressed vs baseline
-- `2` — vault path missing or unreadable
+- `0`: audit ran cleanly (and matched/exceeded baseline, if supplied)
+- `1`: at least one dimension regressed vs baseline
+- `2`: vault path missing or unreadable
 
 ## How to read the output
 
 The scorecard has 5 sections:
 
-- **STRUCTURE** — total notes, edges, link density. If density < 1.5 you have a capture-heavy vault that isn't connecting.
-- **CONNECTIVITY** — orphan + near-orphan + connected-2plus percentages. The headline metric.
-- **CONCENTRATION** — top-hub edge-share + top:next ratio. High values = force-star.
-- **COMMUNITY** — Louvain modularity. < 0.3 = no coherent clusters; > 0.75 = siloed islands.
-- **TOP HUBS / TOP BRIDGES** — the high-influence notes. Useful for "what should I de-star?" or "what's a connector worth protecting?"
+- **STRUCTURE**: total notes, edges, link density. If density < 1.5 you have a capture-heavy vault that isn't connecting.
+- **CONNECTIVITY**: orphan + near-orphan + connected-2plus percentages. The headline metric.
+- **CONCENTRATION**: top-hub edge-share + top:next ratio. High values = force-star.
+- **COMMUNITY**: Louvain modularity. < 0.3 = no coherent clusters; > 0.75 = siloed islands.
+- **TOP HUBS / TOP BRIDGES**: the high-influence notes. Useful for "what should I de-star?" or "what's a connector worth protecting?"
 
 ## Install
 

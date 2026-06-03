@@ -38,7 +38,7 @@ Use the issue templates in `.github/ISSUE_TEMPLATE/`. For bugs, please include:
 
 The rubric is intentionally minimal. New dimensions should:
 
-1. Be **purely structural** — computable from the link graph alone, no LLM in the loop.
+1. Be **purely structural**, computable from the link graph alone, no LLM in the loop.
 2. Have **literature backing** for the threshold. "Feels right" is not sufficient.
 3. Be **independent** of the existing 8. Strongly correlated dimensions don't add information.
 4. Have a **concrete fix path** documented in `docs/GRAPH-ANALYSIS.md`.

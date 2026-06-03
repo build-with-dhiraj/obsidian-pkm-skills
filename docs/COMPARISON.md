@@ -2,7 +2,7 @@
 
 > Feature matrix and qualitative comparison against the established Obsidian-vault tooling. Updated 2026-06.
 
-The Obsidian-vault tooling space has matured rapidly in the last 18 months. The auditor is not a replacement for those tools — it is the missing **opinionated CLI** that grades a vault against expert-cited thresholds and runs in any agentic CLI. This page is where to read about the trade-offs.
+The Obsidian-vault tooling space has matured rapidly in the last 18 months. The auditor is not a replacement for those tools, it is the missing **opinionated CLI** that grades a vault against expert-cited thresholds and runs in any agentic CLI. This page is where to read about the trade-offs.
 
 ---
 
@@ -51,7 +51,7 @@ The Obsidian-vault tooling space has matured rapidly in the last 18 months. The 
 
 ### Use **obsidian-graph-query** when you want:
 - An **AI-agent skill** for querying graph topology via natural language.
-- BFS, shortest path, bridges, hubs, orphans — but as on-demand answers, not a graded report.
+- BFS, shortest path, bridges, hubs, orphans, but as on-demand answers, not a graded report.
 - Tradeoff: forum-distributed skill, not a polished installable, no rubric.
 
 ### Use **obsidiantools** when you want:
@@ -83,6 +83,6 @@ A reasonable workflow:
 
 ## Why this tool exists
 
-The Obsidian-tooling ecosystem has *measurement* (Vault Inspector, obsidiantools), *automation* (Vault Physician, Vault Intelligence), and *advice* (kepano/obsidian-skills) — but nothing in between. There was no **rubric-based grade** with **cited thresholds** that ran from the command line and worked across Claude Code, Cursor, Gemini CLI, and Codex. The auditor fills that gap.
+The Obsidian-tooling ecosystem has *measurement* (Vault Inspector, obsidiantools), *automation* (Vault Physician, Vault Intelligence), and *advice* (kepano/obsidian-skills), but nothing in between. There was no **rubric-based grade** with **cited thresholds** that ran from the command line and worked across Claude Code, Cursor, Gemini CLI, and Codex. The auditor fills that gap.
 
-The auditor is also the **only tool in this list that you can run on a non-Obsidian vault** (Logseq, Foam, Quartz, or any markdown-with-wikilinks directory) — because the underlying graph model and the rubric are tool-agnostic.
+The auditor is also the **only tool in this list that you can run on a non-Obsidian vault** (Logseq, Foam, Quartz, or any markdown-with-wikilinks directory), because the underlying graph model and the rubric are tool-agnostic.

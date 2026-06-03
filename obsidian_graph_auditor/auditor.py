@@ -1,4 +1,4 @@
-"""Core auditor — read-only signal-layer health metrics for an Obsidian vault.
+"""Core auditor, read-only signal-layer health metrics for an Obsidian vault.
 
 Deterministic. Read-only. Pure NetworkX. No LLM calls, no API keys, no plugins.
 
@@ -22,7 +22,7 @@ import logging
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import networkx as nx
 import yaml
@@ -40,7 +40,7 @@ WEIGHT_VECTOR_REL = 0.7  # synthetic "related:" vector-similarity links
 # Frontmatter keys to skip when extracting generic wikilinks (handled separately).
 _FM_SKIP_KEYS = frozenset({"relationships"})
 
-# Heuristic "signal" classes — notes that are *meant* to be hubs (entities,
+# Heuristic "signal" classes, notes that are *meant* to be hubs (entities,
 # concepts, themes, MOCs / Maps of Content). Folder fallbacks when frontmatter
 # `type` is absent. Configurable via Thresholds.signal_types / signal_folders.
 DEFAULT_SIGNAL_TYPES = frozenset({"entity", "concept", "theme", "moc"})
@@ -51,7 +51,7 @@ DEFAULT_SIGNAL_FOLDERS = frozenset({"entities", "concepts", "themes", "mocs"})
 # Frontmatter parsing
 # ---------------------------------------------------------------------------
 
-def _split_frontmatter(text: str) -> tuple[Optional[dict], str]:
+def _split_frontmatter(text: str) -> tuple[dict | None, str]:
     """Return (fm_dict, body) or (None, text) if no valid frontmatter."""
     if not text.startswith("---\n"):
         return None, text
@@ -82,16 +82,16 @@ def _slugify(name: str) -> str:
     return s.strip("-")
 
 
-def _slug_from_wikilink_inner(inner: str) -> Optional[str]:
+def _slug_from_wikilink_inner(inner: str) -> str | None:
     """Parse the inside of ``[[...]]`` into the target slug.
 
-    Obsidian convention: ``[[Target|Display Alias]]`` — first segment before the
+    Obsidian convention: ``[[Target|Display Alias]]``, first segment before the
     pipe is the *target* note, second is the display text. Section anchors
     (``[[Note#Heading]]``) and block-refs (``[[Note^block]]``) are stripped.
     """
     inner = inner.strip()
     if "|" in inner:
-        inner = inner.split("|", 1)[0]  # Obsidian: [[Target|Alias]] — first is target.
+        inner = inner.split("|", 1)[0]  # Obsidian: [[Target|Alias]], first is target.
     # Strip section anchors and block references.
     for sep in ("#", "^"):
         if sep in inner:
@@ -123,7 +123,7 @@ def _extract_wikilinks_from_fm_value(val: Any) -> list[str]:
     return slugs
 
 
-def _parse_typed_rel_target(rel_str: str) -> Optional[str]:
+def _parse_typed_rel_target(rel_str: str) -> str | None:
     """``'uses [[target]]'`` → ``'target-slug'``; handles no-wikilink gracefully."""
     m = _WIKILINK_RE.search(rel_str)
     if m:
@@ -131,7 +131,7 @@ def _parse_typed_rel_target(rel_str: str) -> Optional[str]:
     return None
 
 
-def _has_frontmatter_wikilink(fm: Optional[dict]) -> bool:
+def _has_frontmatter_wikilink(fm: dict | None) -> bool:
     """True if any frontmatter value contains a ``[[wikilink]]`` (adoption signal)."""
     if not fm:
         return False
@@ -165,7 +165,7 @@ def _iter_md_files(vault: Path):
 
 
 def _note_class(
-    fm: Optional[dict],
+    fm: dict | None,
     path: Path,
     vault: Path,
     signal_types: frozenset[str],
@@ -230,7 +230,7 @@ def build_graph(vault: Path) -> nx.Graph:
                 pair = (min(src, tgt), max(src, tgt))
                 edge_weights[pair] += WEIGHT_WIKILINK
 
-        # Layer (b): typed relationships (higher weight — curated edges).
+        # Layer (b): typed relationships (higher weight, curated edges).
         relationships = fm.get("relationships") or []
         if isinstance(relationships, str):
             relationships = [relationships]
@@ -375,8 +375,8 @@ def audit(
     vault: Path,
     top: int = 10,
     *,
-    signal_types: Optional[frozenset[str]] = None,
-    signal_folders: Optional[frozenset[str]] = None,
+    signal_types: frozenset[str] | None = None,
+    signal_folders: frozenset[str] | None = None,
 ) -> dict[str, Any]:
     """Compute the full read-only audit. Returns a JSON-able dict.
 
@@ -462,10 +462,10 @@ def audit(
 
 
 # ---------------------------------------------------------------------------
-# Rendering — human-readable table
+# Rendering, human-readable table
 # ---------------------------------------------------------------------------
 
-def render_table(m: dict[str, Any], grades: Optional[dict[str, str]] = None) -> str:
+def render_table(m: dict[str, Any], grades: dict[str, str] | None = None) -> str:
     """Render a clean human-readable scorecard.
 
     If ``grades`` is supplied (output of ``rubric.grade()``), per-dimension
@@ -475,7 +475,7 @@ def render_table(m: dict[str, Any], grades: Optional[dict[str, str]] = None) -> 
     lines: list[str] = []
     A = lines.append
     A("=" * 64)
-    A("  OBSIDIAN VAULT AUDIT — Grade-A Rubric")
+    A("  OBSIDIAN VAULT AUDIT, Grade-A Rubric")
     A("=" * 64)
     A(f"  vault                       {m['vault']}")
     A("")

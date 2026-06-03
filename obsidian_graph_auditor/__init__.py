@@ -6,7 +6,7 @@ top-hub edge-share, top-hub:next ratio, Louvain modularity, frontmatter-wikilink
 adoption).
 
 Pure Python. No GPT, no API keys, no plugins. Works on any vault that uses
-``[[wikilinks]]`` (Obsidian, Logseq, Foam, Quartz — anything markdown-based).
+``[[wikilinks]]`` (Obsidian, Logseq, Foam, Quartz, anything markdown-based).
 """
 from __future__ import annotations
 

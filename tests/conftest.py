@@ -1,8 +1,8 @@
 """Shared fixture helpers for the test suite."""
 from __future__ import annotations
 
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable
 
 
 def _write(path: Path, frontmatter: dict | None, body: str) -> None:
@@ -27,7 +27,7 @@ def make_healthy_vault(root: Path, n_notes: int = 30) -> Path:
     vault.mkdir(exist_ok=True)
     clusters = ["alpha", "beta", "gamma"]
     per_cluster = n_notes // len(clusters)
-    for ci, name in enumerate(clusters):
+    for _ci, name in enumerate(clusters):
         for j in range(per_cluster):
             slug = f"{name}-{j:02d}"
             fm = {"type": "concept", "tags": [name], "related": [f"[[{name}-{(j + 1) % per_cluster:02d}]]"]}

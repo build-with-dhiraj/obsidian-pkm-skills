@@ -19,9 +19,9 @@ CLI, where ``thresholds.yaml`` looks like::
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field, asdict
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import yaml
 
@@ -107,15 +107,15 @@ class Thresholds:
       - **orphan rate <10%:** PKM-as-graph convention (Konik). Beyond 10%, your
         capture-to-connection ratio is broken.
       - **near-orphan <15%:** derived complement of orphan threshold.
-      - **connected_2plus >75%:** derived — three-quarters of notes should be
+      - **connected_2plus >75%:** derived, three-quarters of notes should be
         actually integrated.
-      - **top-hub edge-share <5%:** power-law avoidance / Milo motifs — vault
+      - **top-hub edge-share <5%:** power-law avoidance / Milo motifs, vault
         shouldn't be a force-star around one mega-hub.
       - **top:next ratio <2.0:** healthy power-law tail, not a single dominant.
-      - **Louvain modularity 0.4-0.65:** Newman / Paranyushkin (InfraNodus) —
+      - **Louvain modularity 0.4-0.65:** Newman / Paranyushkin (InfraNodus) -
         below 0.4 = no coherent communities; above 0.65 = siloed islands.
       - **frontmatter-wikilink adoption >80%:** kepano "Properties as links"
-        convention — typed metadata participates in the graph.
+        convention, typed metadata participates in the graph.
     """
     link_density: _MinThresholds = field(default_factory=lambda: _MinThresholds(a=4.0, b=2.5, c=1.5, d=0.8))
     orphan_pct: _MaxThresholds = field(default_factory=lambda: _MaxThresholds(a=10.0, b=20.0, c=30.0, d=40.0))
@@ -138,7 +138,7 @@ DEFAULT_THRESHOLDS = Thresholds()
 # Loader for user-supplied threshold YAML
 # ---------------------------------------------------------------------------
 
-def load_thresholds(path: Optional[Path]) -> Thresholds:
+def load_thresholds(path: Path | None) -> Thresholds:
     """Load thresholds from a YAML file, merged onto the defaults.
 
     If ``path`` is ``None`` or the file is empty, returns ``DEFAULT_THRESHOLDS``.
@@ -196,7 +196,7 @@ def grade(metrics: dict[str, Any], thresholds: Thresholds = DEFAULT_THRESHOLDS) 
 
     ``metrics`` is the dict returned by ``auditor.audit()``. Missing metrics are
     skipped. ``top_hub_next_ratio == None`` (the only-one-hub edge case) is
-    treated as Grade A (no concentration problem possible) — but only if other
+    treated as Grade A (no concentration problem possible), but only if other
     metrics exist; an empty ``metrics`` dict still grades overall F.
     """
     out: dict[str, str] = {}
@@ -215,7 +215,7 @@ def grade(metrics: dict[str, Any], thresholds: Thresholds = DEFAULT_THRESHOLDS) 
         out[metric_key] = dim.grade(v_f)
         has_real_measurement = True
     # Special: only-one-hub edge case. Auditor reports top_hub_next_ratio=None
-    # when there is no second hub. That's not a problem — Grade A — BUT only
+    # when there is no second hub. That's not a problem, Grade A, BUT only
     # if we actually have other measurements to anchor on.
     if has_real_measurement and "top_hub_next_ratio" in metrics and metrics["top_hub_next_ratio"] is None:
         out["top_hub_next_ratio"] = "A"

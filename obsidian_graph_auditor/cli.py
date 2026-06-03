@@ -23,12 +23,11 @@ import json
 import logging
 import sys
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 from obsidian_graph_auditor import __version__
 from obsidian_graph_auditor.auditor import audit, render_table
 from obsidian_graph_auditor.rubric import GRADES, grade, load_thresholds, score
-
 
 log = logging.getLogger("obsidian_graph_auditor")
 
@@ -107,7 +106,7 @@ def _compare_baseline(current: dict[str, Any], baseline: dict[str, Any], thresho
     return regressed, messages
 
 
-def main(argv: Optional[list[str]] = None) -> int:
+def main(argv: list[str] | None = None) -> int:
     args = _build_parser().parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 

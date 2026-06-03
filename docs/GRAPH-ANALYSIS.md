@@ -16,12 +16,12 @@ The audit replaces visual intuition with eight numbers. This document explains h
 
 **Link density** is just edges / notes. A vault with 3,000 notes and 12,000 internal edges has a density of 4.0.
 
-The network-science consensus for well-connected small-world graphs is 4-10. Below 1.5, you have a capture-heavy vault — you're saving notes faster than you're connecting them. Above 10, you've usually got dense bidirectional auto-linking, which is fine.
+The network-science consensus for well-connected small-world graphs is 4-10. Below 1.5, you have a capture-heavy vault, you're saving notes faster than you're connecting them. Above 10, you've usually got dense bidirectional auto-linking, which is fine.
 
 Two failure modes show up in density:
 
-1. **Sub-2.0 density** — the "list" failure mode. The vault is a stack of captured items with weak threading between them.
-2. **Sub-1.0 density** — the "archive" failure mode. The vault is functionally a backup of articles you read once, not a knowledge graph.
+1. **Sub-2.0 density**, the "list" failure mode. The vault is a stack of captured items with weak threading between them.
+2. **Sub-1.0 density**, the "archive" failure mode. The vault is functionally a backup of articles you read once, not a knowledge graph.
 
 Concrete fix: pick the 20 lowest-degree notes and add 2-4 outgoing wikilinks each. Use frontmatter properties to make this batchable. Re-run the audit; density should jump.
 
@@ -43,7 +43,7 @@ Real-vault data from the development cycle that produced this tool: orphan rate 
 
 You're not allowed to feel bad about deleting. Most captured content is read-once, and the value is in the act of reading, not the act of saving.
 
-**A near-orphan (degree 1) is a half-orphan.** Use the same playbook. A vault with 30% near-orphans is structurally similar to a vault with 30% orphans — neither is well-connected on multiple sides.
+**A near-orphan (degree 1) is a half-orphan.** Use the same playbook. A vault with 30% near-orphans is structurally similar to a vault with 30% orphans, neither is well-connected on multiple sides.
 
 ---
 
@@ -51,7 +51,7 @@ You're not allowed to feel bad about deleting. Most captured content is read-onc
 
 **Top-hub edge-share** = weighted degree of the highest-degree note / total weighted degree.
 
-If one note holds more than 5% of all link-weight in your vault, you have a **force-star anti-pattern**: a single super-hub with everything radiating outward and no peripheral connections. Ron Milo's network-motifs work shows force-stars have terrible retrieval properties — every query routes through the same bottleneck — and they're catastrophically fragile: lose the hub, lose the structure.
+If one note holds more than 5% of all link-weight in your vault, you have a **force-star anti-pattern**: a single super-hub with everything radiating outward and no peripheral connections. Ron Milo's network-motifs work shows force-stars have terrible retrieval properties, every query routes through the same bottleneck, and they're catastrophically fragile: lose the hub, lose the structure.
 
 Real-vault data: the development vault had a `research` mega-hub holding **31.4%** of all edge-weight. After splitting it into ~15 topic-specific hubs, top-hub edge-share dropped to **1.14%**. The fix:
 
@@ -78,7 +78,7 @@ The 0.40-0.65 band comes from Newman's modularity work and from Paranyushkin's I
 
 **To raise low modularity:** mint topic-specific hubs (see the "mega-hub" section above), convert shared frontmatter properties to wikilinks, and tag clusters of related notes into small cliques.
 
-**To lower high modularity:** write bridge notes that explicitly link two communities. The audit's "TOP BRIDGES" section ranks notes by betweenness centrality — these are the existing bridges in your vault. Protect them, and add more like them.
+**To lower high modularity:** write bridge notes that explicitly link two communities. The audit's "TOP BRIDGES" section ranks notes by betweenness centrality, these are the existing bridges in your vault. Protect them, and add more like them.
 
 ---
 
@@ -89,7 +89,7 @@ The 0.40-0.65 band comes from Newman's modularity work and from Paranyushkin's I
 | Link density (low) | Sort low-degree notes; add 2-4 wikilinks each. | 10 sec / note |
 | Orphan rate (high) | Sort orphans by created-date; link or delete. | 10-30 sec / orphan |
 | Near-orphan rate (high) | Same as orphans; treat as "one fix away". | 5-10 sec / note |
-| Connected-2plus (low) | Composite — fixed by fixing orphans + near-orphans. | derived |
+| Connected-2plus (low) | Composite, fixed by fixing orphans + near-orphans. | derived |
 | Top-hub edge-share (high) | Split mega-hub into topic-specific hubs; re-point inbound links. | 30 min one-time |
 | Top-hub:next ratio (high) | Same as edge-share, or invest in second-place hub. | 30 min one-time |
 | Modularity (low) | Mint hubs; convert frontmatter to wikilinks. | 1 hour |
@@ -104,7 +104,7 @@ The general principle: **fix the worst dimension first**. The auditor's overall 
 
 The audit's bottom sections surface the structural notes you care most about:
 
-**TOP HUBS (weighted degree):** the notes with the most edge-weight. The first one is your top hub. If its share is > 5%, it's a force-star — split it. If the gap between #1 and #2 is huge (ratio > 2.0), invest in #2.
+**TOP HUBS (weighted degree):** the notes with the most edge-weight. The first one is your top hub. If its share is > 5%, it's a force-star, split it. If the gap between #1 and #2 is huge (ratio > 2.0), invest in #2.
 
 **TOP BRIDGES (betweenness centrality):** the notes that sit on the shortest path between many other notes. These are the connectors that hold your communities together. **Protect them**: don't rename or merge them casually. If you delete a top bridge by accident, your modularity score will spike (artificial silos appear), and you'll lose the connecting fabric.
 
@@ -121,7 +121,7 @@ Example:
 ```
 NOTE CLASSES
   signal      n=    412  orphans=     8  (1.94%)   <- healthy
-  source      n=  2,715  orphans=   367  (13.52%)  <- normal, but high — review
+  source      n=  2,715  orphans=   367  (13.52%)  <- normal, but high, review
 ```
 
 The fix order is reversed by class: **fix signal-orphans first** (they're cheap and high-leverage), then turn to source-orphans.
@@ -142,7 +142,7 @@ From here on, every audit can compare against that baseline:
 obsidian-graph-audit --vault ~/notes --baseline audit.json
 ```
 
-Exit code 1 if any dimension regressed. Wire it into a pre-commit hook, a CI workflow, or a weekly cron — whichever forcing function actually fires for you.
+Exit code 1 if any dimension regressed. Wire it into a pre-commit hook, a CI workflow, or a weekly cron, whichever forcing function actually fires for you.
 
 ---
 
@@ -151,6 +151,6 @@ Exit code 1 if any dimension regressed. Wire it into a pre-commit hook, a CI wor
 - The full rubric with citations: [`RUBRIC.md`](RUBRIC.md).
 - Tool comparison: [`COMPARISON.md`](COMPARISON.md).
 - Mark Newman, [Modularity and community structure in networks](https://www.pnas.org/doi/10.1073/pnas.0601602103).
-- Dmitry Paranyushkin, [InfraNodus](https://infranodus.com) — discourse network analysis.
+- Dmitry Paranyushkin, [InfraNodus](https://infranodus.com), discourse network analysis.
 - Ron Milo et al., [Network Motifs: Simple Building Blocks of Complex Networks](https://www.weizmann.ac.il/mcb/UriAlon/sites/mcb.UriAlon/files/uploads/network_motifs_2002_milo_science.pdf).
 - Andy Matuschak, [Evergreen notes should be densely linked](https://notes.andymatuschak.org/Evergreen_notes_should_be_densely_linked).

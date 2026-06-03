@@ -2,7 +2,7 @@
 
 > This document is the authoritative reference for what the auditor measures, what counts as healthy, and why. Each dimension links to the literature that anchors its threshold.
 
-The auditor scores eight independent dimensions of vault health. Each dimension grades A-F. The overall grade is the worst dimension — by design, so the highest-leverage fix is always visible.
+The auditor scores eight independent dimensions of vault health. Each dimension grades A-F. The overall grade is the worst dimension, by design, so the highest-leverage fix is always visible.
 
 A vault is **Grade A** only if every dimension is A.
 
@@ -16,7 +16,7 @@ A vault is **Grade A** only if every dimension is A.
 
 **Default grading.** A ≥ 4.0, B ≥ 2.5, C ≥ 1.5, D ≥ 0.8, F < 0.8.
 
-**Why.** Andy Matuschak's evergreen-notes practice describes well-connected notes as "well-connected on multiple sides" — empirically, the small-world graphs that retrieve well sit around 4-10 average degree. Below 1.5 you have a capture-heavy vault that isn't connecting; the graph is closer to a list than a network. Above 10 typically means dense bidirectional auto-linking and is usually fine.
+**Why.** Andy Matuschak's evergreen-notes practice describes well-connected notes as "well-connected on multiple sides", empirically, the small-world graphs that retrieve well sit around 4-10 average degree. Below 1.5 you have a capture-heavy vault that isn't connecting; the graph is closer to a list than a network. Above 10 typically means dense bidirectional auto-linking and is usually fine.
 
 **How to fix it.** Pick a low-degree note and add 2-4 wikilinks to existing notes that share concepts. Use frontmatter properties (kepano "Properties as links") to convert metadata into edges automatically.
 
@@ -42,13 +42,13 @@ A vault is **Grade A** only if every dimension is A.
 **Sources.**
 - Sebastian Konik, PKM-as-graph essays.
 - Ann P., ["Your Second Brain Is Broken"](https://medium.com/@ann_p/your-second-brain-is-broken-why-most-pkm-tools-waste-your-time-76e41dfc6747).
-- Obsidian Forum [Find orphan notes](https://forum.obsidian.md/t/find-orphan-notes/817) — the most active community thread on this exact pain.
+- Obsidian Forum [Find orphan notes](https://forum.obsidian.md/t/find-orphan-notes/817), the most active community thread on this exact pain.
 
 ---
 
 ## 3. Near-orphan rate (degree 1)
 
-**What it is.** Percentage of notes with exactly one internal edge. Near-orphans are dangling tendrils — connected but not integrated.
+**What it is.** Percentage of notes with exactly one internal edge. Near-orphans are dangling tendrils, connected but not integrated.
 
 **Healthy range.** < 15%.
 
@@ -56,7 +56,7 @@ A vault is **Grade A** only if every dimension is A.
 
 **Why.** Near-orphans are the natural derived complement of the orphan threshold: if your orphan rate is under 10%, your single-edge rate should be under 15%, because Matuschak's "well-connected on multiple sides" rule fails at degree 1 as much as it fails at degree 0. Empirically, the difference between a vault that retrieves well and one that doesn't isn't the deg-0 number; it's the deg-1 number.
 
-**How to fix it.** Same playbook as orphans. Bonus: deg-1 notes are higher-leverage than deg-0 because you've already paid the capture cost — adding a second edge is a one-line fix.
+**How to fix it.** Same playbook as orphans. Bonus: deg-1 notes are higher-leverage than deg-0 because you've already paid the capture cost, adding a second edge is a one-line fix.
 
 ---
 
@@ -80,7 +80,7 @@ A vault is **Grade A** only if every dimension is A.
 
 **Default grading.** A ≤ 5%, B ≤ 10%, C ≤ 15%, D ≤ 20%, F > 20%.
 
-**Why.** Network-science calls this a "force-star" anti-pattern: one super-hub with everything radiating outward and nothing connecting peripherally. Ron Milo's work on network motifs shows that force-stars have terrible retrieval properties — every query routes through the same bottleneck. Above 5%, your vault is one tag's worth of damage from collapse.
+**Why.** Network-science calls this a "force-star" anti-pattern: one super-hub with everything radiating outward and nothing connecting peripherally. Ron Milo's work on network motifs shows that force-stars have terrible retrieval properties, every query routes through the same bottleneck. Above 5%, your vault is one tag's worth of damage from collapse.
 
 **How to fix it.** Identify the mega-hub from the auditor's "TOP HUBS" section, then split it into 5-15 topic-specific hubs and redirect inbound links. The audit on the development vault dropped top-hub edge-share from 31.4% to 1.14% with this single fix.
 
@@ -98,7 +98,7 @@ A vault is **Grade A** only if every dimension is A.
 
 **Default grading.** A ≤ 2.0, B ≤ 3.0, C ≤ 5.0, D ≤ 8.0, F > 8.0.
 
-**Why.** A healthy power-law tail has the second-place hub at half the first-place hub or above (ratio < 2.0). When the ratio is 8+, you have a single dominant hub with no second tier — which means there's no graceful failover when that hub gets split, renamed, or refactored.
+**Why.** A healthy power-law tail has the second-place hub at half the first-place hub or above (ratio < 2.0). When the ratio is 8+, you have a single dominant hub with no second tier, which means there's no graceful failover when that hub gets split, renamed, or refactored.
 
 **How to fix it.** Same as top-hub edge-share: split the dominant hub, or invest in the second-tier hubs by adding edges to them.
 
@@ -133,7 +133,7 @@ A vault is **Grade A** only if every dimension is A.
 
 **Default grading.** A ≥ 80%, B ≥ 60%, C ≥ 40%, D ≥ 20%, F < 20%.
 
-**Why.** kepano's "Properties as links" convention converts metadata into graph edges — `author: [[Jane Doe]]`, `source: [[Conference 2026]]`, `topic: [[Graph Theory]]`. When adoption is high, the graph has structured, typed edges, not just unstructured body wikilinks. This makes the auditor's other metrics dramatically more reliable.
+**Why.** kepano's "Properties as links" convention converts metadata into graph edges, `author: [[Jane Doe]]`, `source: [[Conference 2026]]`, `topic: [[Graph Theory]]`. When adoption is high, the graph has structured, typed edges, not just unstructured body wikilinks. This makes the auditor's other metrics dramatically more reliable.
 
 **How to fix it.** Pick the three frontmatter fields you use most often (`source`, `author`, `topic`) and convert them to wikilink form. Add them to your template. The audit on the development vault moved adoption from 6% to 84% by adding a single resolver pass.
 
@@ -145,7 +145,7 @@ A vault is **Grade A** only if every dimension is A.
 
 ## Customizing the thresholds
 
-The defaults represent one defensible reading of the literature. Reasonable people use different ones — a zettelkasten purist might want a stricter `orphan_pct`, a digital-garden author might want a looser `top_hub_edge_share_pct`.
+The defaults represent one defensible reading of the literature. Reasonable people use different ones, a zettelkasten purist might want a stricter `orphan_pct`, a digital-garden author might want a looser `top_hub_edge_share_pct`.
 
 Pass any subset to the CLI:
 
@@ -154,7 +154,7 @@ obsidian-graph-audit --vault ~/notes --threshold-config my-rubric.yaml
 ```
 
 ```yaml
-# my-rubric.yaml — override just the dimensions you disagree with
+# my-rubric.yaml, override just the dimensions you disagree with
 orphan_pct:
   a: 15.0
   b: 25.0
@@ -173,7 +173,7 @@ Unspecified dimensions fall back to the defaults in this document.
 
 ## Why no recall / precision / "personal usefulness" dimensions?
 
-Recall and personal-usefulness metrics require ground-truth labels or longitudinal user data the auditor doesn't have. The eight dimensions in this rubric are all **purely structural** — they can be computed deterministically from the vault's link graph alone, with no LLM in the loop. That's the gate the auditor passes; subjective dimensions are out of scope on purpose.
+Recall and personal-usefulness metrics require ground-truth labels or longitudinal user data the auditor doesn't have. The eight dimensions in this rubric are all **purely structural**, they can be computed deterministically from the vault's link graph alone, with no LLM in the loop. That's the gate the auditor passes; subjective dimensions are out of scope on purpose.
 
 ---
 

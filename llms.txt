@@ -1,6 +1,6 @@
 # obsidian-graph-auditor
 
-> A read-only command-line tool that audits Obsidian vaults and scores second-brain / PKM graph health on an 8-dimension Grade-A rubric. Pure Python, no GPT, no API keys. Works on any markdown vault using [[wikilinks]] — Obsidian, Logseq, Foam, Quartz.
+> A read-only command-line tool that audits Obsidian vaults and scores second-brain / PKM graph health on an 8-dimension Grade-A rubric. Pure Python, no GPT, no API keys. Works on any markdown vault using [[wikilinks]], Obsidian, Logseq, Foam, Quartz.
 
 ## What it measures
 

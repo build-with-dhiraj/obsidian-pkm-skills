@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
 
 import pytest
@@ -36,7 +35,7 @@ def test_cli_baseline_regression_fails(tmp_path: Path) -> None:
 
     orphan = make_orphan_heavy_vault(tmp_path)
     rc2 = main(["--vault", str(orphan), "--baseline", str(baseline_json), "--quiet"])
-    # Should be 1 (regressed) — though if both happen to grade-out equally
+    # Should be 1 (regressed), though if both happen to grade-out equally
     # that's still a valid passing audit. The orphan vault is severe enough
     # that orphan_pct definitely regresses A → F.
     assert rc2 == 1

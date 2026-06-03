@@ -1,5 +1,7 @@
 # obsidian-graph-auditor
 
+![Obsidian Graph Auditor: score your second brain on an 8-dimension Grade-A rubric](social-card.png)
+
 > Score your Obsidian vault on an 8-dimension Grade-A rubric. Read-only. Pure Python. No GPT, no API keys. Works in Claude Code, Cursor, Gemini CLI, and Codex.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -21,7 +23,7 @@
 - Louvain modularity
 - frontmatter-wikilink adoption
 
-Each dimension grades A-F against a threshold from the network-science and PKM canon (kepano, Matuschak, Ahrens, Konik, Paranyushkin, Milo, Newman). A vault is **Grade A** only if every dimension is A. The worst dimension is the overall grade — by design, so you always see the highest-leverage fix.
+Each dimension grades A-F against a threshold from the network-science and PKM canon (kepano, Matuschak, Ahrens, Konik, Paranyushkin, Milo, Newman). A vault is **Grade A** only if every dimension is A. The worst dimension is the overall grade, by design, so you always see the highest-leverage fix.
 
 ---
 
@@ -29,9 +31,9 @@ Each dimension grades A-F against a threshold from the network-science and PKM c
 
 Most Obsidian vaults rot silently. Notes accumulate, links don't, and the graph view becomes a hairball of orphans around one mega-hub. The graph view is great for staring at, but it isn't a measurement. You can't tell from a hairball whether your vault is healthy or whether the entire structure is collapsing around one dominant tag.
 
-Established PKM and network-science work gives us specific thresholds. kepano's "Properties as links" convention puts typed metadata in the graph and expects high frontmatter-wikilink adoption. Andy Matuschak's evergreen-notes practice keeps every note "well-connected on multiple sides" — empirically, a link density of 4-10 edges per note. Konik's PKM-as-graph framing treats orphan rate as a capture-to-connection ratio: above 10% means you're collecting faster than you're integrating. Dmitry Paranyushkin's InfraNodus and Newman's modularity work pin the healthy community-structure band at 0.4-0.65. Below 0.4 your vault has no coherent topics; above 0.65 your topics are siloed islands.
+Established PKM and network-science work gives us specific thresholds. kepano's "Properties as links" convention puts typed metadata in the graph and expects high frontmatter-wikilink adoption. Andy Matuschak's evergreen-notes practice keeps every note "well-connected on multiple sides": empirically, a link density of 4-10 edges per note. Konik's PKM-as-graph framing treats orphan rate as a capture-to-connection ratio: above 10% means you're collecting faster than you're integrating. Dmitry Paranyushkin's InfraNodus and Newman's modularity work pin the healthy community-structure band at 0.4-0.65. Below 0.4 your vault has no coherent topics; above 0.65 your topics are siloed islands.
 
-An auditor turns those thresholds into a single number — a score, a grade, a CI gate to pass before declaring your second brain Grade A. It answers, with citations: **Is my Obsidian healthy? What's a good orphan rate? How many hubs should a vault have?**
+An auditor turns those thresholds into a single number: a score, a grade, a CI gate to pass before declaring your second brain Grade A. It answers, with citations: **Is my Obsidian healthy? What's a good orphan rate? How many hubs should a vault have?**
 
 ---
 
@@ -56,7 +58,7 @@ Full rationale with citations in [`docs/RUBRIC.md`](docs/RUBRIC.md).
 
 ```
 ================================================================
-  OBSIDIAN VAULT AUDIT — Grade-A Rubric
+  OBSIDIAN VAULT AUDIT - Grade-A Rubric
 ================================================================
   vault                       /Users/you/Documents/MyVault
 
@@ -86,6 +88,8 @@ Full rationale with citations in [`docs/RUBRIC.md`](docs/RUBRIC.md).
 ================================================================
 ```
 
+![Sample scorecard rendered from examples/sample-scorecard.txt](examples/sample-scorecard.png)
+
 A run against a small synthetic fixture vault ships in [`examples/sample-scorecard.txt`](examples/sample-scorecard.txt). The audit finishes in well under a second on a 3,000-note vault.
 
 ---
@@ -102,7 +106,7 @@ The tool was developed against a 3,000-note vault used during its own design. Co
 | Louvain modularity | 0.22 | 0.51 | F -> A |
 | Overall grade | F | B | F -> B |
 
-The single largest move came from breaking up one mega-hub: a "research" anchor that captured 31% of all edge-weight in the vault. After de-starring and minting topic-specific hubs, top-hub edge-share dropped to 1.14% and modularity climbed from 0.22 to 0.51. The rubric surfaces this kind of structural fix automatically — you don't have to know to look for it.
+The single largest move came from breaking up one mega-hub: a "research" anchor that captured 31% of all edge-weight in the vault. After de-starring and minting topic-specific hubs, top-hub edge-share dropped to 1.14% and modularity climbed from 0.22 to 0.51. The rubric surfaces this kind of structural fix automatically; you don't have to know to look for it.
 
 ---
 
@@ -222,12 +226,12 @@ Yes. The `--baseline previous.json` flag exits non-zero on regression. See [CI g
 
 ## Documentation
 
-- [`SKILL.md`](SKILL.md) — Cross-CLI skill manifest (Claude Code, Cursor, Gemini CLI, Codex)
-- [`docs/RUBRIC.md`](docs/RUBRIC.md) — The 8-dimension Grade-A rubric, with citations
-- [`docs/COMPARISON.md`](docs/COMPARISON.md) — Feature matrix vs other vault tools
-- [`docs/GRAPH-ANALYSIS.md`](docs/GRAPH-ANALYSIS.md) — Deep-dive on graph analysis and orphan remediation
-- [`CHANGELOG.md`](CHANGELOG.md) — Release history
-- [`CONTRIBUTING.md`](CONTRIBUTING.md) — How to file issues, run tests, propose new dimensions
+- [`SKILL.md`](SKILL.md): Cross-CLI skill manifest (Claude Code, Cursor, Gemini CLI, Codex)
+- [`docs/RUBRIC.md`](docs/RUBRIC.md): The 8-dimension Grade-A rubric, with citations
+- [`docs/COMPARISON.md`](docs/COMPARISON.md): Feature matrix vs other vault tools
+- [`docs/GRAPH-ANALYSIS.md`](docs/GRAPH-ANALYSIS.md): Deep-dive on graph analysis and orphan remediation
+- [`CHANGELOG.md`](CHANGELOG.md): Release history
+- [`CONTRIBUTING.md`](CONTRIBUTING.md): How to file issues, run tests, propose new dimensions
 
 ---
 
