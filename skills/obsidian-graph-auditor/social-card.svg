@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="obsidian-graph-auditor — Score your Obsidian vault on an 8-dimension Grade-A rubric.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f0e17"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="grade-a" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <style>
+      .fg-1 { fill: #fffffe; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .fg-2 { fill: #94a1b2; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .accent { fill: #a78bfa; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .good { fill: #2cb67d; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .bad { fill: #ff8906; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    </style>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- top label -->
+  <text x="80" y="100" class="fg-2" font-size="22" letter-spacing="6">OBSIDIAN-GRAPH-AUDITOR · MIT · v0.1.0</text>
+
+  <!-- headline -->
+  <text x="80" y="180" class="fg-1" font-size="64" font-weight="700">Score your Obsidian vault.</text>
+  <text x="80" y="250" class="accent" font-size="64" font-weight="700">Grade A or fail trying.</text>
+
+  <!-- divider -->
+  <rect x="80" y="290" width="120" height="3" fill="url(#grade-a)"/>
+
+  <!-- scorecard preview (mock) -->
+  <g font-size="22">
+    <text x="80" y="345" class="fg-2">link density          </text>
+    <text x="450" y="345" class="fg-1">4.0128</text>
+    <text x="580" y="345" class="good">A</text>
+
+    <text x="80" y="380" class="fg-2">orphan rate           </text>
+    <text x="450" y="380" class="fg-1">12.00%</text>
+    <text x="580" y="380" class="bad">B</text>
+
+    <text x="80" y="415" class="fg-2">top-hub edge-share    </text>
+    <text x="450" y="415" class="fg-1">1.14%</text>
+    <text x="580" y="415" class="good">A</text>
+
+    <text x="80" y="450" class="fg-2">Louvain modularity    </text>
+    <text x="450" y="450" class="fg-1">0.5142</text>
+    <text x="580" y="450" class="good">A</text>
+
+    <text x="80" y="485" class="fg-2">fm-wikilink adoption  </text>
+    <text x="450" y="485" class="fg-1">84.00%</text>
+    <text x="580" y="485" class="good">A</text>
+  </g>
+
+  <!-- right column big grade -->
+  <g>
+    <text x="900" y="380" class="accent" font-size="280" font-weight="800" text-anchor="middle">A</text>
+    <text x="900" y="430" class="fg-2" font-size="22" text-anchor="middle">8-DIM RUBRIC</text>
+    <text x="900" y="460" class="fg-2" font-size="22" text-anchor="middle">SCORE 96 / 100</text>
+  </g>
+
+  <!-- bottom strap -->
+  <text x="80" y="570" class="fg-2" font-size="20">Read-only · Pure Python · No GPT · Works in Claude Code, Cursor, Gemini CLI, Codex</text>
+  <text x="80" y="600" class="fg-1" font-size="20">github.com/build-with-dhiraj/obsidian-graph-auditor</text>
+</svg>
