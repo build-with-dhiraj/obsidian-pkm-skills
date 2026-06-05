@@ -26,16 +26,18 @@ jobs:
       run:
         working-directory: skills/${{ matrix.skill }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Install
         run: |
-          python -m pip install --upgrade pip
+          # The runner ships a recent pip; only attempt an upgrade opportunistically
+          # so a transient PyPI/DNS hiccup on the upgrade can't red the whole matrix.
+          python -m pip install --upgrade pip || echo "pip upgrade skipped (using bundled pip)"
           pip install -e ".[dev]"
 
       - name: Resolve package import path
