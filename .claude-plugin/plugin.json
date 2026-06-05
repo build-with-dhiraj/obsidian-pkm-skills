@@ -1,0 +1,26 @@
+{
+  "name": "obsidian-pkm-skills",
+  "version": "0.1.0",
+  "description": "Audit, evaluate, and fix Obsidian/PKM vault health — three Claude/Cursor/Gemini CLI skills: graph auditor (8-dimension rubric), brain eval (Recall@10), and orphan killer (auto-linking).",
+  "author": {
+    "name": "Dhiraj Singh Pawar",
+    "email": "build.with.dhiraj@gmail.com",
+    "url": "https://github.com/build-with-dhiraj"
+  },
+  "homepage": "https://github.com/build-with-dhiraj/obsidian-pkm-skills",
+  "repository": "https://github.com/build-with-dhiraj/obsidian-pkm-skills",
+  "license": "MIT",
+  "keywords": [
+    "obsidian",
+    "pkm",
+    "second-brain",
+    "zettelkasten",
+    "knowledge-management",
+    "vault",
+    "audit",
+    "retrieval",
+    "evaluation",
+    "orphans",
+    "wikilinks"
+  ]
+}

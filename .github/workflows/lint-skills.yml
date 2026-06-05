@@ -1,0 +1,28 @@
+name: Lint skills
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Validates that every skills/*/SKILL.md has well-formed YAML frontmatter with
+# at least a non-empty `name` and `description`. Fails CI on a malformed or
+# incomplete skill manifest. See .github/scripts/validate_skills.py.
+jobs:
+  validate-frontmatter:
+    name: Validate SKILL.md frontmatter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        run: python -m pip install --upgrade pip "pyyaml>=6.0"
+
+      - name: Validate
+        run: python .github/scripts/validate_skills.py
